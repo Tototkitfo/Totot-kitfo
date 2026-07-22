@@ -78,7 +78,7 @@
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
   }
 
-  /* ---------- Gold thread signature (scroll-linked lineage line) ---------- */
+  /* ---------- Gold thread signature ---------- */
   .thread-wrap{
     position:fixed;
     top:0; left:0;
@@ -244,8 +244,25 @@
     opacity:0;
     animation:riseIn 1s 0.5s ease forwards;
   }
+  .hero-img-wrap{
+    margin-top:36px;
+    max-width:650px;
+    width:100%;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    opacity:0;
+    animation:riseIn 1s 0.6s ease forwards;
+  }
+  .hero-img-wrap img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:cover;
+  }
   .hero-ctas{
-    margin-top:48px;
+    margin-top:36px;
     display:flex;
     gap:16px;
     opacity:0;
@@ -374,14 +391,15 @@
   .bento-a .plate{
     margin-top:32px;
     width:100%;
-    height:200px;
+    height:220px;
     border-radius:16px;
-    background:
-      radial-gradient(circle at 35% 30%, rgba(197,160,89,0.35), transparent 55%),
-      radial-gradient(circle at 70% 70%, rgba(197,160,89,0.15), transparent 60%),
-      linear-gradient(160deg, #1c1a17, #0d0c0b);
+    overflow:hidden;
     border:1px solid var(--line);
-    position:relative;
+  }
+  .bento-a .plate img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
   }
 
   /* ---------- Menu section ---------- */
@@ -671,7 +689,12 @@
   <section class="hero">
     <p class="eyebrow hero-eyebrow">GURAGE HERITAGE · ADDIS ABABA</p>
     <h1>Crafted Tradition.<br><em>Pure Flavor.</em></h1>
-    <p>Totot Kitfo brings the authentic Gurage art of kitfo to Bole — finely minced beef, warmed gently in niter kibbeh and mitmita, served the way it has been for generations.</p>
+    <p>Totot Kitfo brings the authentic Gurage art of kitfo to Gerji — finely minced beef, warmed gently in niter kibbeh and mitmita, served the way it has been for generations.</p>
+    
+    <div class="hero-img-wrap">
+      <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/kitfo.jpg" alt="Totot Special Kitfo Dish">
+    </div>
+
     <div class="hero-ctas">
       <a href="#menu" class="btn-pill btn-gold btn-lg">Explore Menu</a>
       <a href="#location" class="btn-pill btn-outline btn-lg">Visit Us</a>
@@ -693,7 +716,9 @@
           <span class="card-num">01</span>
           <h3>The Signature Kitfo</h3>
           <p>Finely minced beef, hand-cut to order, gently warmed with authentic mitmita and clarified spiced butter — never overcooked, never rushed.</p>
-          <div class="plate" aria-hidden="true"></div>
+          <div class="plate">
+            <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/kitfo.jpg" alt="Signature Kitfo">
+          </div>
         </div>
         <div class="bento-card reveal">
           <div class="glyph">◆</div>
@@ -785,8 +810,8 @@
         <div style="display:flex; flex-direction:column; gap:20px;">
           <div class="loc-card">
             <p class="loc-label">Address</p>
-            <h3>Bole Sub-City</h3>
-            <p>Totot Kitfo Restaurant<br>Bole Sub-City, Addis Ababa, Ethiopia</p>
+            <h3>Gerji / Jackros Area</h3>
+            <p>Totot Traditional Restaurant<br>Near Anbessa Garage, Gerji, Addis Ababa, Ethiopia</p>
           </div>
           <div class="loc-card">
             <p class="loc-label">Contact</p>
@@ -808,7 +833,7 @@
 <footer>
   <div class="container footer-inner">
     <a href="#top" class="logo">TOTO<span>T</span></a>
-    <p>© 2026 Totot Kitfo — Bole Sub-City, Addis Ababa.</p>
+    <p>© 2026 Totot Kitfo — Gerji, Addis Ababa.</p>
   </div>
 </footer>
 
@@ -916,4 +941,5 @@
 </script>
 
 </body>
-  </html>
+</html>
+
