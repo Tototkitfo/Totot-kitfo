@@ -324,14 +324,40 @@
     overflow:hidden;
     transition:transform 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.5s ease, box-shadow 0.5s ease;
   }
-  .bento-card::before{
-    content:"";
-    position:absolute;
-    top:0; left:0; right:0;
-    height:1px;
-    background:linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity:0;
-    transition:opacity 0.5s ease;
+<!-- THE CRAFT / BENTO -->
+<section id="tradition">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow center">THE CRAFT</p>
+      <h2>Three things we never rush.</h2>
+      <p>Every plate at Totot follows a discipline passed down through Gurage kitchens — nothing sped up, nothing substituted.</p>
+    </div>
+
+    <div class="bento">
+      <div class="bento-card bento-a reveal">
+        <span class="card-num">01</span>
+        <h3>The Signature Kitfo</h3>
+        <p>Finely minced beef, hand-cut to order, gently warmed with authentic mitmita and clarified spiced butter — never overcooked, never rushed.</p>
+        
+        <!-- REPLACE THE SRC BELOW WITH YOUR IMAGE FILE NAME OR PATH -->
+        <img src="YOUR_IMAGE_NAME_HERE.jpg" alt="Signature Kitfo" style="width:100%; border-radius:16px; margin-top:20px; object-fit:cover;">
+        
+      </div>
+      <div class="bento-card reveal">
+        <div class="glyph">◆</div>
+        <span class="card-num">02</span>
+        <h3>Gomen Besiga & Ayib</h3>
+        <p>Traditional cottage cheese and slow-braised collard greens, plated on banana leaves in the old style.</p>
+      </div>
+      <div class="bento-card reveal">
+        <div class="glyph">◈</div>
+        <span class="card-num">03</span>
+        <h3>Cultural Atmosphere</h3>
+        <p>Authentic Gurage hospitality — low tables, warm coffee ceremonies, and a room that feels like a family gathering.</p>
+      </div>
+    </div>
+  </div>
+</section>
   }
   .bento-card:hover{
     transform:translateY(-6px);
