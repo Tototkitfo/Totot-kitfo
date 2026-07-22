@@ -737,33 +737,45 @@
         <p>Tell us when you're coming — we'll have the table warm and ready.</p>
       </div>
 
-      <form class="reserve-wrap reveal" id="reserveForm">
+      <!-- FORM CONFIGURED WITH YOUR EMAIL -->
+      <form class="reserve-wrap reveal" id="reserveForm" action="https://formsubmit.co/Dawitkassahun143@gmail.com" method="POST">
+        <!-- FormSubmit settings -->
+        <input type="hidden" name="_subject" value="New Table Reservation - Totot Kitfo">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+
         <div class="field-row">
           <div class="field">
             <label for="rName">Name</label>
-            <input type="text" id="rName" placeholder="Your full name" required>
+            <input type="text" id="rName" name="Name" placeholder="Your full name" required>
           </div>
           <div class="field">
-            <label for="rGuests">Guests</label>
-            <select id="rGuests" required>
-              <option value="" disabled selected>Select</option>
-              <option>1</option><option>2</option><option>3</option><option>4</option>
-              <option>5</option><option>6</option><option>7+</option>
-            </select>
+            <label for="rPhone">Phone Number</label>
+            <input type="tel" id="rPhone" name="Phone Number" placeholder="+251..." required>
           </div>
         </div>
         <div class="field-row">
           <div class="field">
-            <label for="rDate">Date</label>
-            <input type="date" id="rDate" required>
+            <label for="rGuests">Guests</label>
+            <select id="rGuests" name="Guests" required>
+              <option value="" disabled selected>Select</option>
+              <option>1 Person</option><option>2 People</option><option>3 People</option><option>4 People</option>
+              <option>5 People</option><option>6 People</option><option>7+ People</option>
+            </select>
           </div>
           <div class="field">
-            <label for="rTime">Time</label>
-            <input type="time" id="rTime" required>
+            <label for="rDate">Date</label>
+            <input type="date" id="rDate" name="Date" required>
           </div>
         </div>
-        <button type="submit" class="submit-btn">Confirm Reservation</button>
-        <div class="form-success" id="formSuccess">Thank you — your table request has been received. We'll confirm shortly by phone.</div>
+        <div class="field-row">
+          <div class="field" style="grid-column: span 2;">
+            <label for="rTime">Time</label>
+            <input type="time" id="rTime" name="Time" required>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">Confirm Reservation</button>
+        <div class="form-success" id="formSuccess">Thank you — your table request has been submitted successfully!</div>
       </form>
     </div>
   </section>
@@ -904,16 +916,35 @@
 
   renderMenu('specialties');
 
-  // ---------- Reservation form ----------
+  // ---------- Reservation AJAX Submission ----------
   const reserveForm = document.getElementById('reserveForm');
   const formSuccess = document.getElementById('formSuccess');
+  const submitBtn = document.getElementById('submitBtn');
+
   reserveForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    formSuccess.classList.add('show');
-    reserveForm.querySelector('.submit-btn').textContent = 'Request Sent';
-    setTimeout(() => {
-      reserveForm.querySelector('.submit-btn').textContent = 'Confirm Reservation';
-    }, 3000);
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    fetch(reserveForm.action, {
+      method: 'POST',
+      body: new FormData(reserveForm),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        formSuccess.classList.add('show');
+        submitBtn.textContent = 'Request Sent!';
+        reserveForm.reset();
+      } else {
+        alert('There was a problem submitting your request. Please try again or call us.');
+        submitBtn.textContent = 'Confirm Reservation';
+        submitBtn.disabled = false;
+      }
+    }).catch(error => {
+      alert('There was a problem submitting your request. Please check your internet connection.');
+      submitBtn.textContent = 'Confirm Reservation';
+      submitBtn.disabled = false;
+    });
   });
 
   // ---------- Set min date on date field to today ----------
@@ -922,3 +953,4 @@
 
 </body>
 </html>
+
