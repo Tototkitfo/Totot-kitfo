@@ -6,7 +6,8 @@
 <title>Totot Kitfo — Crafted Tradition. Pure Flavor.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Apple System Fonts (SF Pro) -->
+<link rel="stylesheet" href="https://developer.apple.com/fonts/system-fonts.css" />
 <style>
   :root{
     --obsidian:#0A0A0B;
@@ -27,7 +28,7 @@
   body{
     background:var(--obsidian);
     color:var(--off-white);
-    font-family:'Inter',sans-serif;
+    font-family:'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-weight:400;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
@@ -36,9 +37,9 @@
   ::selection{background:var(--gold-dim);color:var(--off-white);}
 
   h1,h2,h3,.display{
-    font-family:'Fraunces',serif;
-    font-weight:500;
-    letter-spacing:-0.01em;
+    font-family:'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
     line-height:1.05;
   }
 
@@ -129,9 +130,9 @@
     justify-content:space-between;
   }
   .logo{
-    font-family:'Fraunces',serif;
+    font-family:'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size:20px;
-    font-weight:600;
+    font-weight:700;
     letter-spacing:0.14em;
     color:var(--off-white);
   }
@@ -343,8 +344,9 @@
   }
   .bento-card:hover::before{opacity:1;}
   .card-num{
-    font-family:'Fraunces',serif;
+    font-family:'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size:13px;
+    font-weight:600;
     color:var(--gold);
     letter-spacing:0.1em;
     opacity:0.85;
@@ -353,7 +355,7 @@
     margin-top:22px;
     font-size:26px;
     color:var(--off-white);
-    font-weight:500;
+    font-weight:600;
   }
   .bento-card p{
     margin-top:14px;
@@ -428,10 +430,10 @@
   }
   .menu-item:hover{background:var(--charcoal-2);}
   .menu-item-name{
-    font-family:'Fraunces',serif;
+    font-family:'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size:19px;
     color:var(--off-white);
-    font-weight:500;
+    font-weight:600;
   }
   .menu-item-desc{
     margin-top:8px;
@@ -442,8 +444,9 @@
     max-width:340px;
   }
   .menu-item-price{
-    font-family:'Fraunces',serif;
-    font-size:17px;
+    font-family:'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size:16px;
+    font-weight:600;
     color:var(--gold);
     white-space:nowrap;
     padding-top:2px;
@@ -479,7 +482,7 @@
     padding:14px 16px;
     color:var(--off-white);
     font-size:15px;
-    font-family:'Inter',sans-serif;
+    font-family:'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
     transition:border-color 0.3s ease, background 0.3s ease;
     color-scheme:dark;
   }
@@ -582,7 +585,7 @@
     font-weight:600;
     margin-bottom:14px;
   }
-  .loc-card h3{font-size:20px; color:var(--off-white); font-weight:500; margin-bottom:16px; font-family:'Fraunces',serif;}
+  .loc-card h3{font-size:20px; color:var(--off-white); font-weight:600; margin-bottom:16px; font-family:'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;}
   .loc-card p{color:var(--off-white-dim); font-size:15px; line-height:1.9; font-weight:300;}
   .hours-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line-soft); font-size:14px;}
   .hours-row:last-child{border-bottom:none;}
