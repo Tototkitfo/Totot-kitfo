@@ -78,7 +78,7 @@
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
   }
 
-  /* ---------- Gold thread signature ---------- */
+  /* ---------- Gold thread signature (scroll-linked lineage line) ---------- */
   .thread-wrap{
     position:fixed;
     top:0; left:0;
@@ -244,25 +244,8 @@
     opacity:0;
     animation:riseIn 1s 0.5s ease forwards;
   }
-  .hero-img-wrap{
-    margin-top:36px;
-    max-width:650px;
-    width:100%;
-    border-radius:20px;
-    overflow:hidden;
-    border:1px solid var(--line);
-    box-shadow:0 20px 40px rgba(0,0,0,0.5);
-    opacity:0;
-    animation:riseIn 1s 0.6s ease forwards;
-  }
-  .hero-img-wrap img{
-    width:100%;
-    height:auto;
-    display:block;
-    object-fit:cover;
-  }
   .hero-ctas{
-    margin-top:36px;
+    margin-top:48px;
     display:flex;
     gap:16px;
     opacity:0;
@@ -387,19 +370,6 @@
     justify-content:center;
     margin-bottom:24px;
     color:var(--gold);
-  }
-  .bento-a .plate{
-    margin-top:32px;
-    width:100%;
-    height:220px;
-    border-radius:16px;
-    overflow:hidden;
-    border:1px solid var(--line);
-  }
-  .bento-a .plate img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
   }
 
   /* ---------- Menu section ---------- */
@@ -557,34 +527,17 @@
   .loc-map{
     border-radius:24px;
     border:1px solid var(--line-soft);
-    min-height:100%;
-    position:relative;
-    overflow:hidden;
-    background:
-      radial-gradient(circle at 50% 45%, rgba(197,160,89,0.18), transparent 60%),
-      repeating-linear-gradient(0deg, rgba(245,245,247,0.035) 0 1px, transparent 1px 44px),
-      repeating-linear-gradient(90deg, rgba(245,245,247,0.035) 0 1px, transparent 1px 44px),
-      var(--charcoal-2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
     min-height:340px;
-  }
-  .pin{
-    width:16px; height:16px;
-    border-radius:50% 50% 50% 0;
-    transform:rotate(-45deg);
-    background:var(--gold);
-    box-shadow:0 0 0 8px rgba(197,160,89,0.15), 0 0 30px rgba(197,160,89,0.5);
+    height:100%;
+    overflow:hidden;
     position:relative;
   }
-  .pin::after{
-    content:"";
-    position:absolute;
-    top:3px; left:3px;
-    width:6px; height:6px;
-    border-radius:50%;
-    background:var(--obsidian);
+  .loc-map iframe{
+    width:100%;
+    height:100%;
+    min-height:340px;
+    border:0;
+    filter: invert(90%) hue-rotate(180deg) contrast(110%);
   }
   .loc-label{
     font-size:12px;
@@ -689,12 +642,7 @@
   <section class="hero">
     <p class="eyebrow hero-eyebrow">GURAGE HERITAGE · ADDIS ABABA</p>
     <h1>Crafted Tradition.<br><em>Pure Flavor.</em></h1>
-    <p>Totot Kitfo brings the authentic Gurage art of kitfo to Gerji — finely minced beef, warmed gently in niter kibbeh and mitmita, served the way it has been for generations.</p>
-    
-    <div class="hero-img-wrap">
-      <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/kitfo.jpg" alt="Totot Special Kitfo Dish">
-    </div>
-
+    <p>Totot Kitfo brings the authentic Gurage art of kitfo to Bole — finely minced beef, warmed gently in niter kibbeh and mitmita, served the way it has been for generations.</p>
     <div class="hero-ctas">
       <a href="#menu" class="btn-pill btn-gold btn-lg">Explore Menu</a>
       <a href="#location" class="btn-pill btn-outline btn-lg">Visit Us</a>
@@ -716,9 +664,7 @@
           <span class="card-num">01</span>
           <h3>The Signature Kitfo</h3>
           <p>Finely minced beef, hand-cut to order, gently warmed with authentic mitmita and clarified spiced butter — never overcooked, never rushed.</p>
-          <div class="plate">
-            <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/kitfo.jpg" alt="Signature Kitfo">
-          </div>
+          <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/totot_finto.jpg" alt="Kitfo" style="width:100%; border-radius:16px; margin-top:20px;">
         </div>
         <div class="bento-card reveal">
           <div class="glyph">◆</div>
@@ -805,13 +751,18 @@
 
       <div class="location-grid reveal">
         <div class="loc-map">
-          <div class="pin"></div>
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15761.597793444265!2d38.7766!3d9.0108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85aaf301d009%3A0x6b2e3edb57c74dbd!2sTotot%20Traditional%20Restaurant!5e0!3m2!1sen!2set!4v1710000000000!5m2!1sen!2set" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
         <div style="display:flex; flex-direction:column; gap:20px;">
           <div class="loc-card">
             <p class="loc-label">Address</p>
-            <h3>Gerji / Jackros Area</h3>
-            <p>Totot Traditional Restaurant<br>Near Anbessa Garage, Gerji, Addis Ababa, Ethiopia</p>
+            <h3>Bole Sub-City</h3>
+            <p>Totot Kitfo Restaurant<br>Bole Sub-City, Addis Ababa, Ethiopia</p>
           </div>
           <div class="loc-card">
             <p class="loc-label">Contact</p>
@@ -833,7 +784,7 @@
 <footer>
   <div class="container footer-inner">
     <a href="#top" class="logo">TOTO<span>T</span></a>
-    <p>© 2026 Totot Kitfo — Gerji, Addis Ababa.</p>
+    <p>© 2026 Totot Kitfo — Bole Sub-City, Addis Ababa.</p>
   </div>
 </footer>
 
@@ -942,4 +893,3 @@
 
 </body>
 </html>
-
