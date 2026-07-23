@@ -225,6 +225,7 @@
     position:absolute;
     inset:0;
     z-index:-1;
+    background-color: var(--charcoal);
   }
 
   .hero-bg-wrapper img{
@@ -405,6 +406,7 @@
     margin-top:20px;
     object-fit:cover;
     height:220px;
+    background-color: var(--charcoal);
   }
 
   /* ---------- Menu section ---------- */
@@ -574,7 +576,7 @@
     height:100%;
     min-height:380px;
     border:0;
-    filter: invert(90%) hue-rotate(180deg) contrast(110%);
+    filter: invert(90%) hue-rotate(180deg) brightness(0.85) contrast(1.2) saturate(85%);
   }
   .map-overlay-btn{
     position:absolute;
@@ -703,7 +705,7 @@
   <!-- HERO WITH BACKGROUND IMAGE -->
   <section class="hero">
     <div class="hero-bg-wrapper">
-      <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/caption.jpg" alt="Kitfo Traditional Atmosphere">
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80" alt="Authentic Dining Atmosphere at Totot Kitfo">
       <div class="hero-bg-overlay"></div>
     </div>
     <div class="hero-content">
@@ -735,7 +737,7 @@
             <h3>The Signature Kitfo</h3>
             <p>Finely minced beef, hand-cut to order, gently warmed with authentic mitmita and clarified spiced butter — never overcooked, never rushed.</p>
           </div>
-          <img src="kitfo.jpg" alt="Totot Kitfo Signature Dish" class="bento-img">
+          <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Totot Kitfo Signature Dish" class="bento-img">
         </div>
 
         <!-- 02 Card -->
@@ -745,7 +747,7 @@
             <h3>Gomen Besiga & Ayib</h3>
             <p>Traditional cottage cheese and slow-braised collard greens, plated on banana leaves in the old style.</p>
           </div>
-          <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/Gomen_besiga.jpg" alt="Gomen Besiga & Ayib" class="bento-img">
+          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Gomen Besiga & Ayib" class="bento-img">
         </div>
 
         <!-- 03 Card -->
@@ -755,7 +757,7 @@
             <h3>Cultural Atmosphere</h3>
             <p>Authentic Gurage hospitality — low tables, warm coffee ceremonies, and a room that feels like a family gathering.</p>
           </div>
-          <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/caption.jpg" alt="Cultural Atmosphere" class="bento-img">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Cultural Atmosphere" class="bento-img">
         </div>
       </div>
     </div>
@@ -801,7 +803,7 @@
           </div>
           <div class="field">
             <label for="rPhone">Phone Number</label>
-            <input type="tel" id="rPhone" name="Phone Number" placeholder="+251..." required>
+            <input type="tel" id="rPhone" name="Phone Number" placeholder="+251 91 123 4567" pattern="^\+?[0-9\s\-]{9,15}$" title="Please enter a valid phone number" required>
           </div>
         </div>
         <div class="field-row">
@@ -901,9 +903,13 @@
 
   // ---------- Gold thread scroll draw ----------
   const threadPath = document.getElementById('threadPath');
-  const threadLen = threadPath.getTotalLength ? threadPath.getTotalLength() : 1000;
-  threadPath.style.strokeDasharray = threadLen;
-  threadPath.style.strokeDashoffset = threadLen;
+  let threadLen = 1000;
+
+  function initThreadLength() {
+    threadLen = threadPath.getTotalLength ? threadPath.getTotalLength() : 1000;
+    threadPath.style.strokeDasharray = threadLen;
+    updateThread();
+  }
 
   function updateThread(){
     const scrollTop = window.scrollY;
@@ -911,8 +917,10 @@
     const pct = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
     threadPath.style.strokeDashoffset = threadLen * (1 - pct);
   }
+
+  window.addEventListener('resize', initThreadLength);
   window.addEventListener('scroll', () => requestAnimationFrame(updateThread), { passive:true });
-  updateThread();
+  initThreadLength();
 
   // ---------- Menu data & tabs ----------
   const menuData = {
@@ -997,8 +1005,12 @@
     });
   });
 
-  // ---------- Set min date on date field to today ----------
-  document.getElementById('rDate').min = new Date().toISOString().split('T')[0];
+  // ---------- Set min date using East Africa Time / Local Date ----------
+  const now = new Date();
+  const localYear = now.getFullYear();
+  const localMonth = String(now.getMonth() + 1).padStart(2, '0');
+  const localDay = String(now.getDate()).padStart(2, '0');
+  document.getElementById('rDate').min = `${localYear}-${localMonth}-${localDay}`;
 </script>
 
 </body>
