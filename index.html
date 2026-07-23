@@ -84,31 +84,21 @@
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
   }
 
-  /* ---------- Gold thread signature ---------- */
-  .thread-wrap{
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    pointer-events:none;
-    z-index:1;
+  /* ---------- Top Scroll Progress Bar ---------- */
+  .progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    z-index: 101;
   }
-  #threadSvg{
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    top:0;
-    height:100%;
-    width:2px;
-    overflow:visible;
-  }
-  #threadPath{
-    fill:none;
-    stroke:var(--gold);
-    stroke-width:1;
-    stroke-dasharray:1;
-    stroke-dashoffset:1;
-    opacity:0.55;
-    vector-effect:non-scaling-stroke;
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold-bright));
+    width: 0%;
+    transition: width 0.1s ease-out;
   }
 
   /* ---------- Nav ---------- */
@@ -189,25 +179,17 @@
   .btn-outline{
     border:1px solid var(--line-soft);
     color:var(--off-white);
-    background:rgba(10,10,11,0.4);
-    backdrop-filter:blur(10px);
   }
   .btn-outline:hover{
     border-color:var(--gold);
     color:var(--gold-bright);
     transform:translateY(-2px);
   }
-  
-  /* Updated nav button style to force black text */
-  .nav-cta{
-    padding:10px 22px;
-    font-size:13px;
-    color:#0A0A0B !important;
-  }
+  .nav-cta{padding:10px 22px;font-size:13px;}
 
   .nav-toggle{display:none;}
 
-  /* ---------- Hero with Background Image ---------- */
+  /* ---------- Hero ---------- */
   .hero{
     position:relative;
     min-height:100vh;
@@ -218,40 +200,21 @@
     text-align:center;
     padding:160px 32px 100px;
     z-index:2;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% 18%, rgba(197,160,89,0.10), transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(197,160,89,0.05), transparent 70%),
+      var(--obsidian);
     overflow:hidden;
   }
-  
-  .hero-bg-wrapper{
+  .hero::before{
+    content:"";
     position:absolute;
     inset:0;
-    z-index:-1;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(245,245,247,0.02) 0px, rgba(245,245,247,0.02) 1px, transparent 1px, transparent 90px);
+    opacity:0.5;
+    pointer-events:none;
   }
-
-  .hero-bg-wrapper img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center;
-    filter:brightness(0.35) contrast(1.1) blur(2px);
-    transform:scale(1.05);
-  }
-
-  .hero-bg-overlay{
-    position:absolute;
-    inset:0;
-    background:
-      linear-gradient(to bottom, rgba(10,10,11,0.6) 0%, rgba(10,10,11,0.85) 75%, var(--obsidian) 100%),
-      radial-gradient(ellipse 60% 45% at 50% 18%, rgba(197,160,89,0.20), transparent 70%);
-  }
-
-  .hero-content{
-    position:relative;
-    z-index:2;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-  }
-
   .hero-eyebrow{margin-bottom:28px; opacity:0; animation:riseIn 0.9s 0.15s ease forwards;}
   .hero h1{
     font-size:clamp(46px, 8vw, 108px);
@@ -259,7 +222,6 @@
     color:var(--off-white);
     opacity:0;
     animation:riseIn 1s 0.3s ease forwards;
-    text-shadow: 0 4px 30px rgba(0,0,0,0.8);
   }
   .hero h1 em{
     font-style:italic;
@@ -274,11 +236,10 @@
     max-width:560px;
     font-size:18px;
     line-height:1.65;
-    color:var(--off-white);
+    color:var(--off-white-dim);
     font-weight:300;
     opacity:0;
     animation:riseIn 1s 0.5s ease forwards;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
   }
   .hero-ctas{
     margin-top:48px;
@@ -360,7 +321,7 @@
     overflow:hidden;
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
+    justify-style:space-between;
     transition:transform 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.5s ease, box-shadow 0.5s ease;
   }
   .bento-card::before{
@@ -511,6 +472,11 @@
     transition:border-color 0.3s ease, background 0.3s ease;
     color-scheme:dark;
   }
+  /* Fix dropdown text visibility on mobile browsers */
+  .field select option {
+    background-color: var(--charcoal);
+    color: var(--off-white);
+  }
   .field input::placeholder{color:rgba(245,245,247,0.3);}
   .field input:focus, .field select:focus{
     outline:none;
@@ -574,7 +540,6 @@
     height:100%;
     min-height:380px;
     border:0;
-    filter: invert(90%) hue-rotate(180deg) contrast(110%);
   }
   .map-overlay-btn{
     position:absolute;
@@ -677,10 +642,8 @@
 </head>
 <body>
 
-<div class="thread-wrap">
-  <svg id="threadSvg" preserveAspectRatio="none" viewBox="0 0 2 1000">
-    <path id="threadPath" d="M1,0 L1,1000"/>
-  </svg>
+<div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
 </div>
 
 <header id="siteHeader">
@@ -700,20 +663,14 @@
 
 <main id="top">
 
-  <!-- HERO WITH BACKGROUND IMAGE -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg-wrapper">
-      <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/caption.jpg" alt="Kitfo Traditional Atmosphere">
-      <div class="hero-bg-overlay"></div>
-    </div>
-    <div class="hero-content">
-      <p class="eyebrow hero-eyebrow">GURAGE HERITAGE · ADDIS ABABA</p>
-      <h1>Crafted Tradition.<br><em>Pure Flavor.</em></h1>
-      <p>Totot Kitfo brings the authentic Gurage art of kitfo to Gerji — finely minced beef, warmed gently in niter kibbeh and mitmita, served the way it has been for generations.</p>
-      <div class="hero-ctas">
-        <a href="#menu" class="btn-pill btn-gold btn-lg">Explore Menu</a>
-        <a href="#location" class="btn-pill btn-outline btn-lg">Visit Us</a>
-      </div>
+    <p class="eyebrow hero-eyebrow">GURAGE HERITAGE · ADDIS ABABA</p>
+    <h1>Crafted Tradition.<br><em>Pure Flavor.</em></h1>
+    <p>Totot Kitfo brings the authentic Gurage art of kitfo to Gerji — finely minced beef, warmed gently in niter kibbeh and mitmita, served the way it has been for generations.</p>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn-pill btn-gold btn-lg">Explore Menu</a>
+      <a href="#location" class="btn-pill btn-outline btn-lg">Visit Us</a>
     </div>
     <div class="scroll-cue"></div>
   </section>
@@ -735,7 +692,7 @@
             <h3>The Signature Kitfo</h3>
             <p>Finely minced beef, hand-cut to order, gently warmed with authentic mitmita and clarified spiced butter — never overcooked, never rushed.</p>
           </div>
-          <img src="kitfo.jpg" alt="Totot Kitfo Signature Dish" class="bento-img">
+          <img src="https://raw.githubusercontent.com/Tototkitfo/Totot-kitfo/main/caption.jpg" alt="Totot Kitfo Signature Dish" class="bento-img">
         </div>
 
         <!-- 02 Card -->
@@ -882,8 +839,16 @@
 <script>
   // ---------- Nav scroll state ----------
   const header = document.getElementById('siteHeader');
+  const progressBar = document.getElementById('progressBar');
+
   window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
+    const scrollTop = window.scrollY;
+    header.classList.toggle('scrolled', scrollTop > 20);
+
+    // Dynamic scroll progress bar calculation
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPct = (scrollTop / docHeight) * 100;
+    progressBar.style.width = scrollPct + '%';
   }, { passive:true });
 
   // ---------- Mobile nav toggle ----------
@@ -898,21 +863,6 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
-
-  // ---------- Gold thread scroll draw ----------
-  const threadPath = document.getElementById('threadPath');
-  const threadLen = threadPath.getTotalLength ? threadPath.getTotalLength() : 1000;
-  threadPath.style.strokeDasharray = threadLen;
-  threadPath.style.strokeDashoffset = threadLen;
-
-  function updateThread(){
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
-    threadPath.style.strokeDashoffset = threadLen * (1 - pct);
-  }
-  window.addEventListener('scroll', () => requestAnimationFrame(updateThread), { passive:true });
-  updateThread();
 
   // ---------- Menu data & tabs ----------
   const menuData = {
